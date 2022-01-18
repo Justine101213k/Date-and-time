@@ -8,5 +8,5 @@ Go in Main.hx Find the line after this
 ```
 Add this code
 ```haxe
-		addChild(new DateTime(10, 3, '0xFFFFFF');
+addChild(new DateTime(10, 3, '0xFFFFFF');
 ```
