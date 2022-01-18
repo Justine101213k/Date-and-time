@@ -32,7 +32,6 @@ class DateTime extends TextField
     private function onDate(none)
     {
         var ts:String;
-        var correctTime:String;
 
         if (Date.now().getHours() < 10) hours = '0' + Std.string(Date.now().getHours()); else hours = Std.string(Date.now().getHours());
     
@@ -44,7 +43,7 @@ class DateTime extends TextField
         days = Calendar.DAYS_NAME[Date.now().getDay()];
         month = Calendar.MONTH_NAME[Date.now().getMonth()];
 
-        if (visible) // If you toggle Date And Time options lol
+        if (visible)
         {
             // Swag
             text = Std.string('\nTime: ' + hours + ':' + minutes + ' ' + ts + '\nDate: ' + month + ' ' + Date.now().getDate() + ', ' + Date.now().getFullYear() + '\nDay: ' + days);
