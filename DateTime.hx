@@ -10,6 +10,7 @@ class DateTime extends TextField
 {
     private var days:String;
     private var month:String;
+    private var seconds:String;
 
     public function new(x:Float = 10.0, y:Float = 10.0, colorString:String)
     {
@@ -36,6 +37,8 @@ class DateTime extends TextField
         if (Date.now().getHours() < 10) hours = '0' + Std.string(Date.now().getHours()); else hours = Std.string(Date.now().getHours());
     
         if (Date.now().getMinutes() < 10) minutes = '0' + Std.string(Date.now().getMinutes()); else minutes = Std.string(Date.now().getMinutes());
+
+        if (Date.now().getSeconds() <= 10) seconds = '0' + Std.string(Date.now().getMinutes()); else seconds = Std.string(Date.now().getSeconds());
     
         // copied from DateTools.hx lol
         if (Date.now().getHours() > 11) ts = 'PM'; else ts = 'AM';
@@ -43,10 +46,12 @@ class DateTime extends TextField
         days = Calendar.DAYS_NAME[Date.now().getDay()];
         month = Calendar.MONTH_NAME[Date.now().getMonth()];
 
+        visible = FlxG.save.data.dateTimeShowing;
+
         if (visible)
         {
             // Swag
-            text = Std.string('\nTime: ' + hours + ':' + minutes + ' ' + ts + '\nDate: ' + month + ' ' + Date.now().getDate() + ', ' + Date.now().getFullYear() + '\nDay: ' + days);
+            text = Std.string('\nTime: ' + hours + ':' + minutes + ':' + seconds + ' ' + ts + '\nDate: ' + month + ' ' + Date.now().getDate() + ', ' + Date.now().getFullYear() + '\nDay: ' + days);
         }
     }
 
