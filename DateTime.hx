@@ -46,8 +46,6 @@ class DateTime extends TextField
         days = Calendar.DAYS_NAME[Date.now().getDay()];
         month = Calendar.MONTH_NAME[Date.now().getMonth()];
 
-        visible = FlxG.save.data.dateTimeShowing;
-
         if (visible)
         {
             // Swag
