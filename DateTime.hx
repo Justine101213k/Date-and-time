@@ -24,7 +24,7 @@ class DateTime extends TextField
         selectable = false;
         mouseEnabled = false;
 
-        defaultTextFormat = new TextFormat(/*"_sans"*/Assets.getFont("_sans").fontName, 12, Std.parseInt(colorString));
+        defaultTextFormat = new TextFormat("_sans", 12, Std.parseInt(colorString));
 
         addEventListener(Event.ENTER_FRAME, onDate);
 
