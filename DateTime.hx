@@ -7,7 +7,7 @@ import openfl.events.Event;
 
 using StringTools;
 
-// Made by Gtnv (Cool Gamer) Me
+// Made by Gtnv (Endev) Me
 class DateTime extends TextField
 {
     private var days:String;
