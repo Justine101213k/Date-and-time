@@ -19,7 +19,7 @@ class Calendar
         5 => 'Fri', 6 => 'Sat'
     ];
 
-    public static var days_name_map:Int<String> = [
+    public static var days_name_map:IntMap<String> = [
         0 => 'Sunday', 1 => 'Monday', 2 => 'Tuesday', 3 => 'Wednesday', 4 => 'Thursday',
         5 => 'Friday', 6 => 'Saturday'
     ];
