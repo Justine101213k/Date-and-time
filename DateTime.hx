@@ -59,8 +59,8 @@ class DateTime extends TextField
         // days = Calendar.DAYS_NAME[now.getDay()];
         // month = Calendar.MONTH_NAME[now.getMonth()];
 
-        days = Calendar.days_name_map[now.getDay()]; // or Calendar.days_name_map.get(now.getDay());
-        month = Calendar.month_name_map[now.getMonth()]; // or Calendar.month_name_map.get(now.getMonth());
+        days = Calendar.days_name_map.get(now.getDay());
+        month = Calendar.month_name_map.get(now.getMonth());
 
         if (visible)
         {
