@@ -1,3 +1,5 @@
+package;
+
 using haxe.ds.IntMap;
 
 class Calendar
