@@ -10,8 +10,9 @@ class Calendar
 		return new Calendar();
 	}
 
-	public function new(?day:String, ?month:String)
+	public function new(?day:String, ?month:String, ?shortName:Bool = false)
 	{
+		this.shortName = shortName;
 		if (day != null)
 			day = getDay();
 		if (month != null)
