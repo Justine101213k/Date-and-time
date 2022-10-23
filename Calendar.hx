@@ -2,9 +2,21 @@ package;
 
 class Calendar
 {
-	public static var instance:Calendar;
-
+	public static var instance(get, never):Calendar;
 	public var shortName:Bool = false;
+
+	static function get_instance()
+	{
+		return new Calendar();
+	}
+
+	public function new(?day:String, ?month:String)
+	{
+		if (day != null)
+			day = getDay();
+		if (month != null)
+			month = getMonth();
+	}
 
 	public function getDay()
 	{
