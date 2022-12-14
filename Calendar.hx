@@ -2,10 +2,10 @@ package;
 
 class Calendar
 {
-	public static var instance(get, never):Calendar;
+	public static var current(get, never):Calendar;
 	public var shortName:Bool = false;
 
-	static function get_instance()
+	inline static function get_current()
 	{
 		return new Calendar();
 	}
@@ -21,29 +21,17 @@ class Calendar
 
 	public function getDay()
 	{
-		var days:Array<String> = new Array<String>();
-		if (shortName)
-		{
-			days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-		}
-		else
-		{
-			days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-		}
-		return days[Date.now().getDay()];
+		return getDateName(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], Date.now().getDay());
 	}
 
 	public function getMonth()
 	{
-		var months:Array<String> = new Array<String>();
-		if (shortName)
-		{
-			months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-		}
-		else
-		{
-			months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-		}
-		return months[Date.now().getMonth()];
+		return getDateName(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'], 
+			Date.now().getMonth());
+	}
+
+	function getDateName(names:Array<String> = null, index:Int = 0)
+	{
+		return shortName ? names[index].substring(0, 3) : names[index];
 	}
 }

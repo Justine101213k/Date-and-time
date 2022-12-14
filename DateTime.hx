@@ -10,21 +10,24 @@ class DateTime extends TextField
 	public var minutes(default, null):String;
 	public var hours(default, null):String;
 
-	public override function new(x:Float = 0, y:Float = 0, color:Int = 0xFFFFFF)
+	public var currentMode(default, null):Mode = Time;
+	public var currentCase(default, null):TextCases = Both;
+
+	public override function new(x:Float = 0, y:Float = 0, ?mode:Mode = Time, ?cases:TextCases = Both, color:Int = 0xFFFFFF)
 	{
 		super();
 		this.x = x;
 		this.y = y;
+		currentMode = mode;
+		currentCase = cases;
 		mouseEnabled = false;
 		selectable = false;
 		defaultTextFormat = new TextFormat("_sans", 12, Std.parseInt(Std.string(color)));
 		width = 200;
 	}
 
-	private override function __update(transformOnly:Bool, updateChildren:Bool)
+	function getDateText()
 	{
-		super.__update(transformOnly, updateChildren);
-
 		var curDate:Date = Date.now();
 		minutes = '0' + Std.string(curDate.getMinutes());
 		if (curDate.getMinutes() >= 10)
@@ -34,17 +37,53 @@ class DateTime extends TextField
 		hours = '0' + Std.string(curDate.getHours());
 		if (curDate.getHours() >= 10)
 		{
-			if (curDate.getHours() >= 13 && !twentyFourHoursMode)
-				hours = Std.string(curDate.getHours() - 12);
-			else
-				hours = Std.string(curDate.getHours());
+			var tfm:Bool = curDate.getHours() >= 13 && !twentyFourHoursMode;
+			hours = Std.string(curDate.getHours() - (tfm ? 12 : 0));
 		}
 		var time:String = curDate.getHours() <= 11 ? 'AM' : 'PM';
-		var calendar:Calendar = Calendar.instance;
+		var calendar:Calendar = new Calendar();
+		switch (currentMode)
+		{
+			case Calendars(true):
+				return doTextCase(Std.string('Date: ' + curDate.getDate() + '/' + curDate.getMonth() + '/' + curDate.getFullYear()));
+			case Calendars(false):
+				return doTextCase(Std.string('Date: ' + calendar.getMonth() + ' ' + curDate.getDate() + ', ' + curDate.getFullYear()));
+			case Time:
+				return doTextCase(Std.string('Time: ' + hours + ':' + minutes + ' ' + time));
+			case Day:
+				return doTextCase(Std.string('Day: ' + calendar.getDay()));
+			case All(true):
+				return doTextCase(Std.string('Time: ' + hours + ':' + minutes + ' ' + time 
+					+ '\nDate: ' + curDate.getDate() + '/' + curDate.getMonth() + '/' + curDate.getFullYear() 
+					+ '\nDay: ' + calendar.getDay()));
+			case All(false):
+				return doTextCase(Std.string('Time: ' + hours + ':' + minutes + ' ' + time 
+					+ '\nDate: ' + calendar.getMonth() + ' ' + curDate.getDate() + ', ' + curDate.getFullYear() 
+					+ '\nDay: ' + calendar.getDay()));
+		}
+		return null;
+	}
+
+	function doTextCase(text:String)
+	{
+		switch (currentCase)
+		{
+			case Upper:
+				return text.toUpperCase();
+			case Lower:
+				return text.toLowerCase();
+			case Both:
+				return text;
+		}
+	}
+
+	private override function __update(transformOnly:Bool, updateChildren:Bool)
+	{
+		super.__update(transformOnly, updateChildren);
+
 		if (visible)
 		{
-			text = Std.string('Time: ' + hours + ':' + minutes + ' ' + time + '\nDate: ' + calendar.getMonth() + ' ' + curDate.getDate() + ', ' 
-				+ curDate.getFullYear() + '\nDay: ' + calendar.getDay());
+			text = this.getDateText();
 		}
 	}
 }
