@@ -2,8 +2,8 @@ package;
 
 enum Mode
 {
-	Dates(first:Bool);
+	Dates(format:Bool);
 	Time;
 	Day;
-	All(first:Bool);
+	All(dateFormatted:Bool);
 }
