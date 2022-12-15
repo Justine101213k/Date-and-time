@@ -14,9 +14,9 @@ class Calendar
 	{
 		this.shortName = shortName;
 		if (day != null)
-			day = getDay();
+			day = getDayName();
 		if (month != null)
-			month = getMonth();
+			month = getMonthName();
 	}
 
 	public function getDayName()
