@@ -44,22 +44,22 @@ class DateTime extends TextField
 		var calendar:Calendar = new Calendar();
 		switch (currentMode)
 		{
-			case Calendars(true):
+			case Dates(true):
 				return doTextCase(Std.string('Date: ' + curDate.getDate() + '/' + curDate.getMonth() + '/' + curDate.getFullYear()));
-			case Calendars(false):
-				return doTextCase(Std.string('Date: ' + calendar.getMonth() + ' ' + curDate.getDate() + ', ' + curDate.getFullYear()));
+			case Dates(false):
+				return doTextCase(Std.string('Date: ' + calendar.getMonthName() + ' ' + curDate.getDate() + ', ' + curDate.getFullYear()));
 			case Time:
 				return doTextCase(Std.string('Time: ' + hours + ':' + minutes + ' ' + time));
 			case Day:
-				return doTextCase(Std.string('Day: ' + calendar.getDay()));
+				return doTextCase(Std.string('Day: ' + calendar.getDayName()));
 			case All(true):
 				return doTextCase(Std.string('Time: ' + hours + ':' + minutes + ' ' + time 
 					+ '\nDate: ' + curDate.getDate() + '/' + curDate.getMonth() + '/' + curDate.getFullYear() 
-					+ '\nDay: ' + calendar.getDay()));
+					+ '\nDay: ' + calendar.getDayName()));
 			case All(false):
 				return doTextCase(Std.string('Time: ' + hours + ':' + minutes + ' ' + time 
-					+ '\nDate: ' + calendar.getMonth() + ' ' + curDate.getDate() + ', ' + curDate.getFullYear() 
-					+ '\nDay: ' + calendar.getDay()));
+					+ '\nDate: ' + calendar.getMonthName() + ' ' + curDate.getDate() + ', ' + curDate.getFullYear() 
+					+ '\nDay: ' + calendar.getDayName()));
 		}
 		return null;
 	}

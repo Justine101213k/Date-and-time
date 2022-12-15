@@ -19,18 +19,18 @@ class Calendar
 			month = getMonth();
 	}
 
-	public function getDay()
+	public function getDayName()
 	{
-		return getDateName(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], Date.now().getDay());
+		return getName(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], Date.now().getDay());
 	}
 
-	public function getMonth()
+	public function getMonthName()
 	{
-		return getDateName(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'], 
+		return getName(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'], 
 			Date.now().getMonth());
 	}
 
-	function getDateName(names:Array<String> = null, index:Int = 0)
+	function getName(names:Array<String> = null, index:Int = 0)
 	{
 		return shortName ? names[index].substring(0, 3) : names[index];
 	}
