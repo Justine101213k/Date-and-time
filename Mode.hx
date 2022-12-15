@@ -2,7 +2,7 @@ package;
 
 enum Mode
 {
-	Calendars(first:Bool);
+	Dates(first:Bool);
 	Time;
 	Day;
 	All(first:Bool);
